@@ -1,12 +1,15 @@
 const express = require("express");
-const router = express.Router();
 
 const userController = require("../controller/userController");
 const userControllerSecond = require("../controller/userControllerSecond");
 
+const userValidate = require("../validator/userValidate");
+
+const router = express.Router();
+
 router.get("/list", userController.list);
 
-router.post("/insert", userController.insert);
+router.post("/insert", userValidate.insert, userController.insert);
 
 router.get("/getById/:id", userController.getById);
 
